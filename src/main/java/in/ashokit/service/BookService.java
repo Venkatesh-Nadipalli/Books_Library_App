@@ -10,7 +10,11 @@ public interface BookService {
 	
 	public boolean saveBook(Book book);
 	
-	public void deletebook(Integer book_Id);
+	public void deletebook(Integer bookId);
 	
-	public Book getbookbyid(Integer book_Id);
+	public Book getbookbyid(Integer bookId);
+	
+	// public List<Book> searchBooksByName(String bookName);
+	 
+	 public List<Book> searchBooksAll(String bookName, Integer bookId, Double bookPrice);
 }

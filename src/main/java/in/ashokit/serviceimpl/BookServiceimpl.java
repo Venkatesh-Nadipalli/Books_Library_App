@@ -3,8 +3,8 @@ package in.ashokit.serviceimpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import in.ashokit.entity.Book;
 import in.ashokit.repo.BookRepository;
@@ -13,15 +13,14 @@ import in.ashokit.service.BookService;
 @Service
 public class BookServiceimpl implements BookService {
 
-	
+	@Autowired
 	private BookRepository bookrepo;
 	
 	
-	
 	public BookServiceimpl(BookRepository bookrepo) {
-		
-		this.bookrepo = bookrepo;
+		this.bookrepo=bookrepo;
 	}
+	
 
       
 
@@ -39,28 +38,39 @@ public class BookServiceimpl implements BookService {
 		
 	Book savedbook	= bookrepo.save(book);
 	
-	if (savedbook.getBook_Id()!=null)
+	if (savedbook.getBookId()!=null)
 		return true;
 		return false;
 	}
 
 	@Override
-	public void deletebook(Integer book_Id)
+	public void deletebook(Integer bookId)
 	{
-		//bookrepo.deleteById(book_Id);
+		//bookrepo.deleteById(bookId);
 		
-	Optional<Book>	findbyid = bookrepo.findById(book_Id);
+	Optional<Book>	findbyid = bookrepo.findById(bookId);
 		if(findbyid.isPresent()) {
 			Book book = findbyid.get();
 			book.setActiveSW("N");
 			bookrepo.save(book);
 		}
 	}
-	public Book getbookbyid(Integer book_Id) {
+	@Override
+	public Book getbookbyid(Integer bookId) {
 		
-		Optional<Book>	findbyid = bookrepo.findById(book_Id);
+		Optional<Book>	findbyid = bookrepo.findById(bookId);
 		if(findbyid.isPresent()) 
 			return findbyid.get();
 		return null;
 	}
+	
+//	
+//	  @Override public List<Book> searchBooksByName(String bookName) { 
+//		  return bookrepo.findByBookName(bookName); 
+//		  }
+	 
+	  @Override
+	    public List<Book> searchBooksAll(String bookName, Integer bookId, Double bookPrice) {
+	        return bookrepo.searchBooks(bookName, bookId, bookPrice);
+	    }
 }

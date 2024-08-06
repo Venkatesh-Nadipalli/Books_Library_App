@@ -1,5 +1,6 @@
 package in.ashokit.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,30 +11,35 @@ public class Book{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer book_Id;
+	private Integer bookId;
 	
-	private String book_Name;
-	private double book_Price;
+	@Column(name = "bookName")
+	private String bookName;
+	
+	@Column(name = "bookPrice")
+	private double bookPrice;
+	
+	@Column(name = "activeSW")
 	private String activeSW;
 	
 	
-	public Integer getBook_Id() {
-		return book_Id;
+	public Integer getBookId() {
+		return bookId;
 	}
-	public void setBook_Id(Integer book_Id) {
-		this.book_Id = book_Id;
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
 	}
-	public String getBook_Name() {
-		return book_Name;
+	public String getBookName() {
+		return bookName;
 	}
-	public void setBook_Name(String book_Name) {
-		this.book_Name = book_Name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
-	public double getBook_Price() {
-		return book_Price;
+	public double getBookPrice() {
+		return bookPrice;
 	}
-	public void setBook_Price(double book_Price) {
-		this.book_Price = book_Price;
+	public void setBookPrice(double bookPrice) {
+		this.bookPrice = bookPrice;
 	}
 	public String getActiveSW() {
 		return activeSW;
@@ -45,7 +51,7 @@ public class Book{
 	
 	@Override
 	public String toString() {
-		return "Book [book_Id=" + book_Id + ", book_Name=" + book_Name + ", book_Price=" + book_Price + ", activeSW="
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", bookPrice=" + bookPrice + ", activeSW="
 				+ activeSW + "]";
 	}
 	
